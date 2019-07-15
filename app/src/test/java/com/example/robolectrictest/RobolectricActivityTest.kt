@@ -13,7 +13,8 @@ import org.robolectric.annotation.Config
 import org.junit.Assert.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class)
+@Config(manifest=Config.NONE)
+//@Config(constants = BuildConfig::class)
 class RobolectricActivityTest {
 
     private var activity: MainActivity? = null
@@ -38,6 +39,6 @@ class RobolectricActivityTest {
         val rightMargin = (textView.layoutParams as LinearLayout.LayoutParams).rightMargin
         assertEquals(10, rightMargin.toLong())
         val leftMargin = (textView.layoutParams as LinearLayout.LayoutParams).leftMargin
-        assertEquals(10, leftMargin.toLong())
+        assertEquals(10, leftMargin.toLong()) 
     }
 }
