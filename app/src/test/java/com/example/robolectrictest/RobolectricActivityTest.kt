@@ -3,6 +3,7 @@ package com.example.robolectrictest
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert.*
 
 import org.junit.Before
 import org.junit.Test
@@ -10,9 +11,6 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 
 
 @RunWith(RobolectricTestRunner::class)
@@ -44,11 +42,15 @@ class RobolectricActivityTest {
         assertEquals(10, rightMargin.toLong())
         val leftMargin = (textView.layoutParams as LinearLayout.LayoutParams).leftMargin
         assertEquals(10, leftMargin.toLong())
+        assertNotNull(textView)
     }
     @Test
     @Throws(Exception::class)
     fun shouldHaveCorrectAppName() {
         val hello = activity!!.getResources().getString(R.string.hello)
+
+        // https://objectpartners.com/2013/09/18/the-benefits-of-using-assertthat-over-other-assert-methods-in-unit-tests/
+        // assertThat(actual, is(equalTo(expected)));
         assertThat(textView.text.toString(), equalTo(hello))
     }
 }
